@@ -1,18 +1,25 @@
-const path = require( 'path' );
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const path = require( "path" );
+const HtmlWebpackPlugin = require( "html-webpack-plugin" );
+const Dotenv = require( "dotenv-webpack" );
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: "./src/index.js", // Entry file
     output: {
-        path: path.join( __dirname, '/dist' ),
-        filename: "bundle.js",
-        publicPath: '/',
+        path: path.resolve( __dirname, "dist" ),
+        filename: "[hash].bundle.js",
+        clean: true, // Clean dist folder before build
+        publicPath: "/",
     },
-    mode: "development",
+    resolve: {
+        alias: {
+            "@/*": path.resolve( __dirname, "src/*" ),
+        },
+        extensions: [ ".jsx", ".js", ".js" ], // Resolve these file types
+    },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx)$/, // Apply loader to TS/TSX files
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
@@ -21,27 +28,28 @@ module.exports = {
                     },
                 },
             },
+
             {
-                test: /\.css$/,
+                test: /\.css$/, // Load CSS files
                 use: [ "style-loader", "css-loader", "postcss-loader" ],
             },
             {
-                test: /\.svg$/,
+                test: /\.(png|jpg|jpeg|gif|svg)$/i, // Load images
                 type: "asset/resource",
             },
-        ]
+        ],
     },
-    resolve: {
-        extensions: [ ".js", ".jsx" ]
-    },
-    plugins: [ new HtmlWebpackPlugin( {
-        template: "./public/index.html",
-        inject: "body",
-    } ), ],
+    plugins: [
+        new HtmlWebpackPlugin( {
+            template: "./public/index.html", // HTML template
+        } ),
+        new Dotenv(),
+    ],
     devServer: {
-        static: "./dist",
-        open: true,
+        port: 3000,
+        static: path.resolve( __dirname, "public" ), // Serve static file
         hot: true,
-        port: 3000
+        historyApiFallback: true, // Support React Router
     },
+    mode: "development", // Change to 'production' for production builds
 };
