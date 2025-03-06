@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 const JewelleryCategories = () => {
     const [ activeAccordian, setActiveAccordian ] = useState( true );
+
     const [ jewelleryData, setJewelleryData ] = useState( { category: "", buttonLink: "" } );
     const [ categories, setCategories ] = useState( [] );
     const [ editIndex, setEditIndex ] = useState( null );

@@ -30,6 +30,8 @@ const Blog = () => {
         if ( file )
         {
             const reader = new FileReader();
+            // console.log( reader.readAsDataURL )
+            console.log( reader.result )
             reader.onloadend = () => {
                 setImage( reader.result );
             };
