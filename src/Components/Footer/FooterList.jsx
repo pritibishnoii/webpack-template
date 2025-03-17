@@ -3,7 +3,7 @@ import { ToggleSwitch } from "./CommonUi";
 
 const FooterList = ( { formData, handleToggleChange } ) => {
     return (
-        <div className="w-4/5 h-max bg-white shadow-lg py-8 px-6 flex mt-8 mx-auto rounded-md flex-col">
+        <div className="w-4/5 h-max bg-white shadow-lg py-8 px-6 flex my-8 mx-auto rounded-md flex-col ">
             <h1 className="text-md text-gray-700 font-light my-3 mt-9 text-left">Footer List</h1>
             <div className="overflow-x-auto mt-8">
                 <div className="min-w-[800px]">

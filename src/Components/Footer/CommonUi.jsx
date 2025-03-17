@@ -20,7 +20,7 @@ const InputField = ( { label, placeholder, name, value, onChange, type = "text" 
         </label>
         <div className="relative">
             <input
-                type="text" // Always use type="text" for color inputs
+                type="text"
                 className="border border-gray-200 rounded-md py-1 px-2 w-full placeholder:text-gray-300 text-sm text-gray-700 outline-none font-extralight"
                 placeholder={ placeholder }
                 name={ name }
